@@ -18,7 +18,6 @@ public class ClientSendThread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public void sendMessage(TranObject t) throws IOException {

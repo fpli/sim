@@ -42,7 +42,7 @@ public class ClientListenThread extends Thread {
 			isStart = true;
 			while (isStart) {
 				TranObject mReceived = null;
-				//System.out.println("开始接受服务器");
+				System.out.println("开始接受服务器");
 				mReceived = (TranObject) mOis.readObject();
 				System.out.println("接受成功");
 				System.out.println(mReceived.getTranType());

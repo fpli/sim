@@ -27,8 +27,13 @@ public class ImDB {
 	}
 
 	public synchronized static ImDB getInstance(Context context) {
-		if (imDB == null)
-			imDB = new ImDB(context);
+		if (imDB == null){
+			synchronized (ImDB.class){
+				if (null == imDB){
+					imDB = new ImDB(context);
+				}
+			}
+		}
 		return imDB;
 	}
 

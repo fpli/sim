@@ -72,7 +72,7 @@ public class StepPhoto extends RegisterStep implements OnClickListener {
 	public boolean validate() {
 		if (mUserPhoto == null) {
 			showCustomToast("请添加头像");
-			return false;
+			return true;
 		}
 		return true;
 	}
@@ -95,7 +95,8 @@ public class StepPhoto extends RegisterStep implements OnClickListener {
 					if (!mNetService.isConnected()) {
 						return 0;
 					} else {
-						byte[] photoByte = PhotoUtils.getBytes(mUserPhoto);
+						//byte[] photoByte = PhotoUtils.getBytes(mUserPhoto);
+						byte[] photoByte = new byte[10];
 						User user = new User(mAccount, mName, mPassword,
 								mBirthday, mGender, photoByte);
 						UserAction.register(user);

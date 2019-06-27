@@ -40,22 +40,24 @@ public class ApplicationData {
 
 	public static ApplicationData getInstance() {
 		if (mInitData == null) {
-			mInitData = new ApplicationData();
+			synchronized (ApplicationData.class){
+				if (null == mInitData){
+					mInitData = new ApplicationData();
+				}
+			}
 		}
 		return mInitData;
 	}
 
-	private ApplicationData() {
-
-	}
+	private ApplicationData() {}
 
 	public void start() {
 		while (!(mIsReceived))
 			;
 	}
 
-	public void loginMessageArrived(Object tranObject) {
-		mReceivedMessage = (TranObject) tranObject;
+	public void loginMessageArrived(TranObject tranObject) {
+		mReceivedMessage =  tranObject;
 		Result loginResult = mReceivedMessage.getResult();
 		if (loginResult == Result.LOGIN_SUCCESS) {
 			mUser = (User) mReceivedMessage.getObject();
@@ -94,7 +96,6 @@ public class ApplicationData {
 	}
 
 	public void initData(Context comtext) {
-		System.out.println("initdata");
 		mContext = comtext;
 		mIsReceived = false;
 		mFriendList = null;
@@ -130,7 +131,6 @@ public class ApplicationData {
 			if (!mFriendList.contains(newFriend)) {
 				mFriendList.add(newFriend);
 			}
-			
 			mFriendPhotoMap.put(newFriend.getId(), PhotoUtils.getBitmap(newFriend.getPhoto()));
 			if (friendListHandler != null) {
 				Message message = new Message();
@@ -161,8 +161,7 @@ public class ApplicationData {
 		boolean hasMessageTab = false;
 		for (int i = 0; i < mMessageEntities.size(); i++) {
 			MessageTabEntity messageTab = mMessageEntities.get(i);
-			if (messageTab.getSenderId() == senderId
-					&& messageTab.getMessageType() == MessageTabEntity.FRIEND_MESSAGE) {
+			if (messageTab.getSenderId() == senderId && messageTab.getMessageType() == MessageTabEntity.FRIEND_MESSAGE) {
 				messageTab.setUnReadCount(messageTab.getUnReadCount() + 1);
 				messageTab.setContent(chat.getContent());
 				messageTab.setSendTime(chat.getSendTime());

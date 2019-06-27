@@ -64,8 +64,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	}
 
 	protected void clearAsyncTask() {
-		Iterator<AsyncTask<Void, Void, Integer>> iterator = mAsyncTasks
-				.iterator();
+		Iterator<AsyncTask<Void, Void, Integer>> iterator = mAsyncTasks.iterator();
 		while (iterator.hasNext()) {
 			AsyncTask<Void, Void, Integer> asyncTask = iterator.next();
 			if (asyncTask != null && !asyncTask.isCancelled()) {

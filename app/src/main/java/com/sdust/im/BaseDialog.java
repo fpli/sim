@@ -131,8 +131,7 @@ public class BaseDialog extends Dialog implements
 		return mBaseDialog;
 	}
 
-	public boolean titleAndMessageIsExist(CharSequence title,
-                                          CharSequence message) {
+	public boolean titleAndMessageIsExist(CharSequence title, CharSequence message) {
 		if (title == null && message == null) {
 			mLayoutTop.setVisibility(View.GONE);
 			return false;
@@ -157,7 +156,6 @@ public class BaseDialog extends Dialog implements
 			mLayoutContent.setVisibility(View.VISIBLE);
 			mHtvMessage.setText(text);
 		} else {
-
 			mLayoutContent.setVisibility(View.GONE);
 		}
 	}

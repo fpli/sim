@@ -17,9 +17,7 @@ public class NetService {
 	private boolean mIsConnected = false;
 	private Context mContext = null;
 
-	private NetService() {
-
-	}
+	private NetService() {}
 
 	public void onInit(Context context) {
 		this.mContext = context;
