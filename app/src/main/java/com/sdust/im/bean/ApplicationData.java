@@ -54,6 +54,10 @@ public class ApplicationData {
 			;
 	}
 
+	/**
+	 * 描述:登录后台返回消息
+	 * @param tranObject
+	 */
 	public void loginMessageArrived(Object tranObject) {
 		mReceivedMessage = (TranObject) tranObject;
 		Result loginResult = mReceivedMessage.getResult();

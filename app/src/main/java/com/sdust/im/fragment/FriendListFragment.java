@@ -75,12 +75,13 @@ public class FriendListFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				User friend = mFriendList.get(position);
-				Intent intent = new Intent(mContext,ChatActivity.class);
+				Intent intent = new Intent(mContext, ChatActivity.class);
 				intent.putExtra("friendName", friend.getUserName());
 				intent.putExtra("friendId", friend.getId());
 				startActivity(intent);
 			}
 		});
+
 		mTitleBarView.setBtnRightOnclickListener(new OnClickListener() {
 
 			@Override

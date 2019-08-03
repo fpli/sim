@@ -73,8 +73,18 @@ public class FriendSearchResultActivity extends Activity {
 					.setPositiveButton("是",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
 							try {
-								UserAction.sendFriendRequest(Result.MAKE_FRIEND_REQUEST,requestee.getId());
-							} catch (IOException e) {
+								new Thread(){
+									@Override
+									public void run() {
+										try {
+											UserAction.sendFriendRequest(Result.MAKE_FRIEND_REQUEST,requestee.getId());
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
+									}
+								}.start();
+
+							} catch (Exception e) {
 								e.printStackTrace();
 							}
 						}

@@ -143,13 +143,13 @@ public class StepPhoto extends RegisterStep implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.reg_photo_layout_selectphoto:
-			PhotoUtils.selectPhoto(mActivity);
-			break;
+			case R.id.reg_photo_layout_selectphoto:
+				PhotoUtils.selectPhoto(mActivity);
+				break;
 
-		case R.id.reg_photo_layout_takepicture:
-			mTakePicturePath = PhotoUtils.takePicture(mActivity);
-			break;
+			case R.id.reg_photo_layout_takepicture:
+				mTakePicturePath = PhotoUtils.takePicture(mActivity);
+				break;
 		}
 	}
 
@@ -178,7 +178,6 @@ public class StepPhoto extends RegisterStep implements OnClickListener {
 	}
 
 	public static void setRegisterInfo(TranObject object, boolean isReceived) {
-
 		mReceivedInfo = object;
 		mIsReceived = true;
 	}

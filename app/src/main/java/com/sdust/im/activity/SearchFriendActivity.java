@@ -20,8 +20,7 @@ import com.sdust.im.view.TitleBarView;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchFriendActivity extends BaseActivity implements
-        OnClickListener {
+public class SearchFriendActivity extends BaseActivity implements OnClickListener {
 
 	private TitleBarView mTitleBarView;
 	private EditText mSearchEtName;
@@ -77,7 +76,7 @@ public class SearchFriendActivity extends BaseActivity implements
 		switch (v.getId()) {
 		case R.id.search_friend_by_name_btn_search:
 			flag = false;
-			String searchName = mSearchEtName.getText().toString();
+			final String searchName = mSearchEtName.getText().toString();
 			if (searchName.equals("")) {
 				showCustomToast("请填写账号");
 				mSearchEtName.requestFocus();
@@ -87,8 +86,18 @@ public class SearchFriendActivity extends BaseActivity implements
 			} else {
 				try {
 					flag = true;
-					UserAction.searchFriend("0" + " " + searchName);
-				} catch (IOException e) {
+
+					new Thread(){
+						@Override
+						public void run() {
+							try {
+								UserAction.searchFriend("0" + " " + searchName);
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}.start();
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}

@@ -8,8 +8,8 @@ import java.net.Socket;
 
 public class ClientSendThread {
 
-	private Socket mSocket = null;
-	private ObjectOutputStream oos = null;
+	private Socket mSocket;
+	private ObjectOutputStream oos;
 
 	public ClientSendThread(Socket socket) {
 		this.mSocket = socket;
@@ -21,8 +21,18 @@ public class ClientSendThread {
 		
 	}
 
-	public void sendMessage(TranObject t) throws IOException {
-		oos.writeObject(t);
-		oos.flush();
+	public void sendMessage(final TranObject t) throws IOException {
+		new Thread(){
+			@Override
+			public void run() {
+				try {
+					oos.writeObject(t);
+					oos.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}.start();
+
 	}
 }

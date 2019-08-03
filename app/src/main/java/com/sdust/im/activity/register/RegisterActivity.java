@@ -1,5 +1,6 @@
 package com.sdust.im.activity.register;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -121,20 +122,12 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 					return;
 				}
 				Uri uri = data.getData();
-				String[] proj = { MediaColumns.DATA };
-				Cursor cursor = managedQuery(uri, proj, null, null, null);
-				if (cursor != null) {
-					int column_index = cursor
-							.getColumnIndexOrThrow(MediaColumns.DATA);
-					if (cursor.getCount() > 0 && cursor.moveToFirst()) {
-						String path = cursor.getString(column_index);
-						Bitmap bitmap = BitmapFactory.decodeFile(path);
-						if (PhotoUtils.bitmapIsLarge(bitmap)) {
-							PhotoUtils.cropPhoto(this, this, path);
-						} else {
-							mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
-						}
-					}
+				ContentResolver cr = this.getContentResolver();
+				try {
+					Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+					mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 			break;

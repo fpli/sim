@@ -99,7 +99,6 @@ public class LoginActivity extends BaseActivity {
 			@Override
 			protected Integer doInBackground(Void... params) {
 				try {
-					
 					mNetService.closeConnection();
 					mNetService.onInit(LoginActivity.this);
 					mNetService.setupConnection();

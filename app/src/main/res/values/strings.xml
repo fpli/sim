@@ -4,7 +4,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <!-- QQ -->
-    <string name="app_name">陌陌</string>
+    <string name="app_name">QQ</string>
     <string name="et_account_hint">账号</string>
     <string name="et_password_hint">密码</string>
     <string name="register">新用户</string>
