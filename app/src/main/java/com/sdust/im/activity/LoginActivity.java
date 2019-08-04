@@ -119,7 +119,7 @@ public class LoginActivity extends BaseActivity {
 						return 1;// 登录成功
 					else if(data.getReceivedMessage().getResult() == Result.LOGIN_FAILED)
 						return 2;// 登录失败
-				} catch (IOException e) {
+				} catch (Exception e) {
 					Log.d("network", "IO异常");
 				}
 				return 0;

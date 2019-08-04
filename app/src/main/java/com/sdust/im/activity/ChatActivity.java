@@ -99,11 +99,7 @@ public class ChatActivity extends BaseActivity {
 				chatList.add(chatMessage);
 				chatMessageAdapter.notifyDataSetChanged();
 				chatMeessageListView.setSelection(chatList.size());
-				try {
-					UserAction.sendMessage(chatMessage);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				UserAction.sendMessage(chatMessage);
 				ImDB.getInstance(ChatActivity.this).saveChatMessage(chatMessage);
 			}
 		});

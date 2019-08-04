@@ -86,17 +86,7 @@ public class SearchFriendActivity extends BaseActivity implements OnClickListene
 			} else {
 				try {
 					flag = true;
-
-					new Thread(){
-						@Override
-						public void run() {
-							try {
-								UserAction.searchFriend("0" + " " + searchName);
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-					}.start();
+					UserAction.searchFriend("0" + " " + searchName);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -126,8 +116,7 @@ public class SearchFriendActivity extends BaseActivity implements OnClickListene
 					flag = true;
 					UserAction.searchFriend("1" + " " + lage + " " + uage + " "
 							+ sex);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}

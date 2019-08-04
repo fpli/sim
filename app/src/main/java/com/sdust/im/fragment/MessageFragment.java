@@ -128,7 +128,7 @@ public class MessageFragment extends Fragment implements RemoveListener {
 						dialog.cancel();
 						try {
 							UserAction.sendFriendRequest(Result.FRIEND_REQUEST_RESPONSE_REJECT, chooseMessageEntity.getSenderId());
-						} catch (IOException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 						mMessageEntityList.remove(mPosition);

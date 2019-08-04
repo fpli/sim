@@ -75,7 +75,7 @@ public class StepAccount extends RegisterStep implements TextWatcher {
 						return 1;// 代表用户名已存在
 					else if(mReceivedInfo.getResult() == Result.ACCOUNT_CAN_USE)
 						return 2;// 代表用户名可用
-				} catch (IOException e) {
+				} catch (Exception e) {
 					Log.d("register", "注册账号异常");
 				}
 				return 0;
