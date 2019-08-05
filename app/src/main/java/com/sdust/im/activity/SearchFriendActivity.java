@@ -20,8 +20,7 @@ import com.sdust.im.view.TitleBarView;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SearchFriendActivity extends BaseActivity implements
-        OnClickListener {
+public class SearchFriendActivity extends BaseActivity implements OnClickListener {
 
 	private TitleBarView mTitleBarView;
 	private EditText mSearchEtName;
@@ -75,54 +74,55 @@ public class SearchFriendActivity extends BaseActivity implements
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.search_friend_by_name_btn_search:
-				flag = false;
-				String searchName = mSearchEtName.getText().toString();
-				if (searchName.equals("")) {
-					showCustomToast("请填写账号");
-					mSearchEtName.requestFocus();
-				} else if (!VerifyUtils.matchAccount(searchName)) {
-					showCustomToast("账号格式错误");
-					mSearchEtName.requestFocus();
-				} else {
-					try {
-						flag = true;
-						UserAction.searchFriend("0" + " " + searchName);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+		case R.id.search_friend_by_name_btn_search:
+			flag = false;
+			final String searchName = mSearchEtName.getText().toString();
+			if (searchName.equals("")) {
+				showCustomToast("请填写账号");
+				mSearchEtName.requestFocus();
+			} else if (!VerifyUtils.matchAccount(searchName)) {
+				showCustomToast("账号格式错误");
+				mSearchEtName.requestFocus();
+			} else {
+				try {
+					flag = true;
+					UserAction.searchFriend("0" + " " + searchName);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
+			}
 
-				break;
-			case R.id.search_friend_by_else_btn_search:
-				flag = false;
-				int lage = mSearchSpLowage.getSelectedItemPosition() + 5;
-				int uage = mSearchSpHighage.getSelectedItemPosition() + 5;
-				if (lage > uage)
-					showCustomToast("年龄不合法");
-				else {
-					int sex = 3;// 默认全部
-					int choseId = mRgpSex.getCheckedRadioButtonId();
-					switch (choseId) {
-					case R.id.search_friend_by_else_rdbtn_female:
-						sex = 0;
-						break;
-					case R.id.search_friend_by_else_rdbtn_male:
-						sex = 1;
-						break;
-					default:
-						break;
-					}
-					try {
-						flag = true;
-						UserAction.searchFriend("1" + " " + lage + " " + uage + " " + sex);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+			break;
+		case R.id.search_friend_by_else_btn_search:
+			flag = false;
+			int lage = mSearchSpLowage.getSelectedItemPosition() + 5;
+			int uage = mSearchSpHighage.getSelectedItemPosition() + 5;
+			if (lage > uage)
+				showCustomToast("年龄不合法");
+			else {
+				int sex = 3;// 默认全部
+				int choseId = mRgpSex.getCheckedRadioButtonId();
+				switch (choseId) {
+				case R.id.search_friend_by_else_rdbtn_female:
+					sex = 0;
+					break;
+				case R.id.search_friend_by_else_rdbtn_male:
+					sex = 1;
+					break;
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
+				try {
+					flag = true;
+					UserAction.searchFriend("1" + " " + lage + " " + uage + " "
+							+ sex);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			break;
+		default:
+			break;
 		}
 		if (flag) {
 			mIsReceived = false;

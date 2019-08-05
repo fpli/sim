@@ -34,7 +34,7 @@ public class FriendListAdapter extends BaseAdapter {
 		Bitmap photo = (ApplicationData.getInstance().getFriendPhotoMap()).get(user.getId());
 		String name = user.getUserName();
 		String briefIntro = user.getUserBriefIntro();
-		convertView = mInflater.inflate(R.layout.friend_list_item,null);
+		convertView = mInflater.inflate(R.layout.friend_list_item, null);
 		avatarView =  convertView.findViewById(R.id.user_photo);
 		nameView = convertView.findViewById(R.id.friend_list_name);
 		isOnline = convertView.findViewById(R.id.stateicon);
@@ -45,7 +45,6 @@ public class FriendListAdapter extends BaseAdapter {
 		
 		if(!user.isOnline()) {
 			isOnline.setVisibility(View.GONE);
-			
 		}
 		if (photo != null) {
 			avatarView.setImageBitmap(photo);

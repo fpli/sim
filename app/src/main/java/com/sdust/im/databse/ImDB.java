@@ -26,10 +26,10 @@ public class ImDB {
 		db = imOpenHelper.getWritableDatabase();
 	}
 
-	public synchronized static ImDB getInstance(Context context) {
+	public static ImDB getInstance(Context context) {
 		if (imDB == null){
 			synchronized (ImDB.class){
-				if (null == imDB){
+				if (imDB == null){
 					imDB = new ImDB(context);
 				}
 			}
@@ -136,7 +136,7 @@ public class ImDB {
 		Cursor cursor = db.rawQuery(
 				"select * from chat_message where userid = " + user.getId()
 						+ " and friendid = " + friendId, null);
-		List<ChatEntity> allMessages = new ArrayList<ChatEntity>();
+		List<ChatEntity> allMessages = new ArrayList<>();
 		if (cursor != null) {
 			while (cursor.moveToNext()) {
 				ChatEntity chat = new ChatEntity();

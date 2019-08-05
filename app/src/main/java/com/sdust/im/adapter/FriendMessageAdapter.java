@@ -21,9 +21,9 @@ public class FriendMessageAdapter extends BaseAdapter {
 	private Context mContext0;
 
 	public FriendMessageAdapter(Context context, List<MessageTabEntity> vector) {
+		this.mContext0 = context;
+		this.mInflater = LayoutInflater.from(this.mContext0);
 		this.mMessageEntities = vector;
-		mInflater = LayoutInflater.from(context);
-		mContext0 = context;
 	}
 
 	@Override
@@ -36,8 +36,7 @@ public class FriendMessageAdapter extends BaseAdapter {
 		MessageTabEntity message = mMessageEntities.get(position);
 		Integer senderId = message.getSenderId();
 		String name = message.getName();
-		Bitmap photo = (ApplicationData.getInstance().getFriendPhotoMap())
-				.get(senderId);
+		Bitmap photo = (ApplicationData.getInstance().getFriendPhotoMap()).get(senderId);
 		int messageType = message.getMessageType();
 		String sendTime = message.getSendTime();
 		int unReadCount = message.getUnReadCount();

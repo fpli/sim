@@ -28,6 +28,9 @@ import com.sdust.im.view.TitleBarView;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * 描述:显示消息的Fragment
+ */
 public class MessageFragment extends Fragment implements RemoveListener {
 
 	private Context mContext;
@@ -111,7 +114,7 @@ public class MessageFragment extends Fragment implements RemoveListener {
 
 						try {
 							UserAction.sendFriendRequest(Result.FRIEND_REQUEST_RESPONSE_ACCEPT, chooseMessageEntity.getSenderId());
-						} catch (IOException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 						mMessageEntityList.remove(mPosition);
@@ -125,7 +128,7 @@ public class MessageFragment extends Fragment implements RemoveListener {
 						dialog.cancel();
 						try {
 							UserAction.sendFriendRequest(Result.FRIEND_REQUEST_RESPONSE_REJECT, chooseMessageEntity.getSenderId());
-						} catch (IOException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 						mMessageEntityList.remove(mPosition);

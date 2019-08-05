@@ -23,6 +23,7 @@ public class NearByFragment extends Fragment {
 		init();
 		return mBaseView;
 	}
+
 	private void findView(){
 		mTitleBarView = mBaseView.findViewById(R.id.title_bar);
 	}

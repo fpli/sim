@@ -35,7 +35,7 @@ public class SpUtil {
 	}
 	
 	public static void setBooleanSharedPerference(SharedPreferences sp, String key, boolean value){
-		Editor editor=sp.edit();
+		Editor editor = sp.edit();
 		editor.putBoolean(key, value);
 		editor.commit();
 	}

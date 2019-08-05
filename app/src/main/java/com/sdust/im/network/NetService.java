@@ -56,7 +56,7 @@ public class NetService {
 		mClientListenThread.start();
 	}
 
-	public void send(TranObject t) throws IOException {
+	public void send(TranObject t) {
 		mClientSendThread.sendMessage(t);
 	}
 

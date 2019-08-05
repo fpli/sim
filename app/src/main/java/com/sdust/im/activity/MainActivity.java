@@ -71,7 +71,7 @@ public class MainActivity extends FragmentActivity {
 		
 		mConstact.performClick();
 		
-		mPopupWindow=new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
+		mPopupWindow = new PopupWindow(mPopView, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, true);
 		
 		app_cancle.setOnClickListener(new OnClickListener() {
 			@Override

@@ -1,5 +1,6 @@
 package com.sdust.im.activity.register;
 
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -23,7 +24,8 @@ import com.sdust.im.view.HeaderLayout.HeaderStyle;
 
 import java.util.Date;
 
-public class RegisterActivity extends BaseActivity implements OnClickListener, onNextActionListener {
+public class RegisterActivity extends BaseActivity implements OnClickListener,
+		onNextActionListener {
 
 	private HeaderLayout mHeaderLayout;
 	private ViewFlipper mVfFlipper;
@@ -111,59 +113,50 @@ public class RegisterActivity extends BaseActivity implements OnClickListener, o
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-			case PhotoUtils.INTENT_REQUEST_CODE_ALBUM:
-				if (data == null) {
+		case PhotoUtils.INTENT_REQUEST_CODE_ALBUM:
+			if (data == null) {
+				return;
+			}
+			if (resultCode == RESULT_OK) {
+				if (data.getData() == null) {
 					return;
 				}
-				if (resultCode == RESULT_OK) {
-					if (data.getData() == null) {
-						return;
-					}
-					Uri uri = data.getData();
-					String[] proj = { MediaColumns.DATA };
-					Cursor cursor = managedQuery(uri, proj, null, null, null);
-					if (cursor != null) {
-						int column_index = cursor
-								.getColumnIndexOrThrow(MediaColumns.DATA);
-						if (cursor.getCount() > 0 && cursor.moveToFirst()) {
-							String path = cursor.getString(column_index);
-							Bitmap bitmap = BitmapFactory.decodeFile(path);
-							if (PhotoUtils.bitmapIsLarge(bitmap)) {
-								PhotoUtils.cropPhoto(this, this, path);
-							} else {
-								//mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
-								mStepPhoto.setUserPhoto(null);
-							}
-						}
-					}
+				Uri uri = data.getData();
+				ContentResolver cr = this.getContentResolver();
+				try {
+					Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+					mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				break;
+			}
+			break;
 
-			case PhotoUtils.INTENT_REQUEST_CODE_CAMERA:
-				if (resultCode == RESULT_OK) {
-					String path = mStepPhoto.getTakePicturePath();
+		case PhotoUtils.INTENT_REQUEST_CODE_CAMERA:
+			if (resultCode == RESULT_OK) {
+				String path = mStepPhoto.getTakePicturePath();
+				Bitmap bitmap = BitmapFactory.decodeFile(path);
+				if (PhotoUtils.bitmapIsLarge(bitmap)) {
+					PhotoUtils.cropPhoto(this, this, path);
+				} else {
+					//mStepPhoto.setUserPhoto(bitmap);
+					mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
+				}
+			}
+			break;
+
+		case PhotoUtils.INTENT_REQUEST_CODE_CROP:
+			if (resultCode == RESULT_OK) {
+				String path = data.getStringExtra("path");
+				if (path != null) {
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
-					if (PhotoUtils.bitmapIsLarge(bitmap)) {
-						PhotoUtils.cropPhoto(this, this, path);
-					} else {
+					if (bitmap != null) {
 						//mStepPhoto.setUserPhoto(bitmap);
 						mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
 					}
 				}
-				break;
-
-			case PhotoUtils.INTENT_REQUEST_CODE_CROP:
-				if (resultCode == RESULT_OK) {
-					String path = data.getStringExtra("path");
-					if (path != null) {
-						Bitmap bitmap = BitmapFactory.decodeFile(path);
-						if (bitmap != null) {
-							//mStepPhoto.setUserPhoto(bitmap);
-							mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
-						}
-					}
-				}
-				break;
+			}
+			break;
 		}
 	}
 

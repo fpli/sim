@@ -37,6 +37,7 @@ public class ChatActivity extends BaseActivity {
 	private EditText inputEdit;
 	private List<ChatEntity> chatList;
 	private Handler handler;
+	private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,17 +94,12 @@ public class ChatActivity extends BaseActivity {
 				chatMessage.setReceiverId(friendId);
 				chatMessage.setMessageType(ChatEntity.SEND);
 				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
 				String sendTime = sdf.format(date);
 				chatMessage.setSendTime(sendTime);
 				chatList.add(chatMessage);
 				chatMessageAdapter.notifyDataSetChanged();
 				chatMeessageListView.setSelection(chatList.size());
-				try {
-					UserAction.sendMessage(chatMessage);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				UserAction.sendMessage(chatMessage);
 				ImDB.getInstance(ChatActivity.this).saveChatMessage(chatMessage);
 			}
 		});

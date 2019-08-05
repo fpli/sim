@@ -22,9 +22,9 @@ public class FriendSearchResultAdapter extends BaseAdapter {
 	private Context mContext0;
 
 	public FriendSearchResultAdapter(Context context, List<User> vector) {
+		this.mContext0 = context;
+		this.mInflater = LayoutInflater.from(this.mContext0);
 		this.mVector = vector;
-		mInflater = LayoutInflater.from(context);
-		mContext0 = context;
 	}
 
 	public View getView(int position, View convertView, ViewGroup root) {
