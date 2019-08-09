@@ -12,6 +12,7 @@ public class NetConnect {
 	private Socket mClientSocket = null;
 	private static final String SERVER_IP = "192.168.0.104";
 	private static final int SERVER_PORT = 8399;
+	private static final InetSocketAddress endpoint = new InetSocketAddress(SERVER_IP, SERVER_PORT);
 	private boolean mIsConnected = false;
 
 	public NetConnect() {}
@@ -20,7 +21,7 @@ public class NetConnect {
 		try {
 			mClientSocket = new Socket();
 			mClientSocket.setKeepAlive(true);
-			mClientSocket.connect(new InetSocketAddress(SERVER_IP, SERVER_PORT), 3000);
+			mClientSocket.connect(endpoint, 3000);
 			Log.d("Network", "服务器连接成功");
 			if (mClientSocket.isConnected()) {
 				mIsConnected = true;
