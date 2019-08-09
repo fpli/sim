@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
-import com.sdust.im.databse.ImDB;
+import com.sdust.im.database.ImDB;
 import com.sdust.im.global.Result;
 import com.sdust.im.util.PhotoUtils;
 

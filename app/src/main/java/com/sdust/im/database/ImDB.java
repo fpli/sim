@@ -1,4 +1,4 @@
-package com.sdust.im.databse;
+package com.sdust.im.database;
 
 import android.content.ContentValues;
 import android.content.Context;

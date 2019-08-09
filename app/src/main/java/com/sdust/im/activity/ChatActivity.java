@@ -17,10 +17,9 @@ import com.sdust.im.action.UserAction;
 import com.sdust.im.adapter.ChatMessageAdapter;
 import com.sdust.im.bean.ApplicationData;
 import com.sdust.im.bean.ChatEntity;
-import com.sdust.im.databse.ImDB;
+import com.sdust.im.database.ImDB;
 import com.sdust.im.view.TitleBarView;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;

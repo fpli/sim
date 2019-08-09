@@ -1,4 +1,4 @@
-package com.sdust.im.databse;
+package com.sdust.im.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
