@@ -16,7 +16,6 @@ import com.sdust.im.bean.User;
 import com.sdust.im.global.Result;
 import com.sdust.im.view.TitleBarView;
 
-import java.io.IOException;
 import java.util.List;
 
 public class FriendSearchResultActivity extends Activity {
