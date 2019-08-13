@@ -37,9 +37,9 @@ public class TitleBarView extends RelativeLayout {
 	
 	private void initView(){
 		LayoutInflater.from(mContext).inflate(R.layout.common_title_bar, this);
-		btnLeft=(Button) findViewById(R.id.title_btn_left);
-		btnRight=(Button) findViewById(R.id.title_btn_right);
-		tv_center=(TextView) findViewById(R.id.title_txt);
+		btnLeft   = findViewById(R.id.title_btn_left);
+		btnRight  = findViewById(R.id.title_btn_right);
+		tv_center = findViewById(R.id.title_txt);
 		
 	}
 	
@@ -47,11 +47,10 @@ public class TitleBarView extends RelativeLayout {
 		btnLeft.setVisibility(LeftVisibility);
 		btnRight.setVisibility(rightVisibility);
 		tv_center.setVisibility(centerVisibility);
-		
 	}
 	
 	public void setBtnLeft(int icon,int txtRes){
-		Drawable img=mContext.getResources().getDrawable(icon);
+		Drawable img = mContext.getResources().getDrawable(icon);
 		int height= SystemMethod.dip2px(mContext, 20);
 		int width=img.getIntrinsicWidth()*height/img.getIntrinsicHeight();
 		img.setBounds(0, 0, width, height);
