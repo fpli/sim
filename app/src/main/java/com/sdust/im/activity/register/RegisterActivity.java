@@ -113,49 +113,49 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-		case PhotoUtils.INTENT_REQUEST_CODE_ALBUM:
-			if (data == null) {
-				return;
-			}
-			if (resultCode == RESULT_OK) {
-				if (data.getData() == null) {
+			case PhotoUtils.INTENT_REQUEST_CODE_ALBUM:
+				if (data == null) {
 					return;
 				}
-				Uri uri = data.getData();
-				ContentResolver cr = this.getContentResolver();
-				try {
-					Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
-					mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
-				} catch (Exception e) {
-					e.printStackTrace();
+				if (resultCode == RESULT_OK) {
+					if (data.getData() == null) {
+						return;
+					}
+					Uri uri = data.getData();
+					ContentResolver cr = this.getContentResolver();
+					try {
+						Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+						mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
-			}
-			break;
+				break;
 
-		case PhotoUtils.INTENT_REQUEST_CODE_CAMERA:
-			if (resultCode == RESULT_OK) {
-				String path = mStepPhoto.getTakePicturePath();
-				Bitmap bitmap = BitmapFactory.decodeFile(path);
-				if (PhotoUtils.bitmapIsLarge(bitmap)) {
-					PhotoUtils.cropPhoto(this, this, path);
-				} else {
-					//mStepPhoto.setUserPhoto(bitmap);
-					mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
-				}
-			}
-			break;
-
-		case PhotoUtils.INTENT_REQUEST_CODE_CROP:
-			if (resultCode == RESULT_OK) {
-				String path = data.getStringExtra("path");
-				if (path != null) {
+			case PhotoUtils.INTENT_REQUEST_CODE_CAMERA:
+				if (resultCode == RESULT_OK) {
+					String path = mStepPhoto.getTakePicturePath();
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
-					if (bitmap != null) {
+					if (PhotoUtils.bitmapIsLarge(bitmap)) {
+						PhotoUtils.cropPhoto(this, this, path);
+					} else {
+						//mStepPhoto.setUserPhoto(bitmap);
 						mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
 					}
 				}
-			}
-			break;
+				break;
+
+			case PhotoUtils.INTENT_REQUEST_CODE_CROP:
+				if (resultCode == RESULT_OK) {
+					String path = data.getStringExtra("path");
+					if (path != null) {
+						Bitmap bitmap = BitmapFactory.decodeFile(path);
+						if (bitmap != null) {
+							mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
+						}
+					}
+				}
+				break;
 		}
 	}
 
