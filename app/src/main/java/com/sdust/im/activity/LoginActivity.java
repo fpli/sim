@@ -22,7 +22,6 @@ import com.sdust.im.global.Result;
 import com.sdust.im.network.NetService;
 import com.sdust.im.util.VerifyUtils;
 
-import java.io.IOException;
 
 /**
  * 描述:登录界面  账户和密码的输入框，登录按钮和注册按钮的点击事件
