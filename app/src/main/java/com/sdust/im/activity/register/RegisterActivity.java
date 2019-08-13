@@ -151,7 +151,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 				if (path != null) {
 					Bitmap bitmap = BitmapFactory.decodeFile(path);
 					if (bitmap != null) {
-						//mStepPhoto.setUserPhoto(bitmap);
 						mStepPhoto.setUserPhoto(PhotoUtils.compressImage(bitmap));
 					}
 				}
