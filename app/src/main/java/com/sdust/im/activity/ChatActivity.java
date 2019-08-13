@@ -26,16 +26,18 @@ import java.util.List;
 
 public class ChatActivity extends BaseActivity {
 
-	private TitleBarView mTitleBarView;
-	private int friendId;
-	private String friendName;
-	private ListView chatMeessageListView;
-	private ChatMessageAdapter chatMessageAdapter;
-	private Button sendButton;
-	private ImageButton emotionButton;
-	private EditText inputEdit;
-	private List<ChatEntity> chatList;
+	private TitleBarView        mTitleBarView;
+	private int                 friendId;
+	private String              friendName;
+	private Button              sendButton;
+	private ImageButton         emotionButton;
+	private EditText            inputEdit;
+	private ListView            chatMeessageListView;
+	private ChatMessageAdapter  chatMessageAdapter;
+	private List<ChatEntity>    chatList;
+
 	private Handler handler;
+
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
 
 	@Override
