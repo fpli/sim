@@ -36,7 +36,7 @@ public class ChatActivity extends BaseActivity {
 	private ChatMessageAdapter  chatMessageAdapter;
 	private List<ChatEntity>    chatList;
 
-	private Handler handler;
+	private Handler chatMessageHandler;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
 
@@ -65,7 +65,7 @@ public class ChatActivity extends BaseActivity {
 
 	@Override
 	protected void initEvents() {
-		handler = new Handler() {
+		chatMessageHandler = new Handler() {
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
 					case 1:
@@ -77,7 +77,7 @@ public class ChatActivity extends BaseActivity {
 				}
 			}
 		};
-		ApplicationData.getInstance().setChatHandler(handler);
+		ApplicationData.getInstance().setChatHandler(chatMessageHandler);
 		chatList = ApplicationData.getInstance().getChatMessagesMap().get(friendId);
 		if(chatList == null){
 			chatList = ImDB.getInstance(ChatActivity.this).getChatMessage(friendId);
