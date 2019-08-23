@@ -36,7 +36,7 @@ public class ChatActivity extends BaseActivity {
 	private ChatMessageAdapter  chatMessageAdapter;
 	private List<ChatEntity>    chatList;
 
-	private Handler chatMessageHandler;
+	private Handler             chatMessageHandler;
 
 	private SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm:ss");
 
@@ -47,7 +47,7 @@ public class ChatActivity extends BaseActivity {
 		setContentView(R.layout.activity_chat);
 		Intent intent = getIntent();
 		friendName = intent.getStringExtra("friendName");
-		friendId = intent.getIntExtra("friendId", 0);
+		friendId   = intent.getIntExtra("friendId", 0);
 		initViews();
 		initEvents();
 	}
@@ -79,7 +79,7 @@ public class ChatActivity extends BaseActivity {
 		};
 		ApplicationData.getInstance().setChatHandler(chatMessageHandler);
 		chatList = ApplicationData.getInstance().getChatMessagesMap().get(friendId);
-		if(chatList == null){
+		if (chatList == null){
 			chatList = ImDB.getInstance(ChatActivity.this).getChatMessage(friendId);
 			ApplicationData.getInstance().getChatMessagesMap().put(friendId, chatList);
 		}

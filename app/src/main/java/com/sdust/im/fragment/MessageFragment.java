@@ -53,7 +53,7 @@ public class MessageFragment extends Fragment implements RemoveListener {
 	}
 
 	private void findView() {
-		mTitleBarView = mBaseView.findViewById(R.id.title_bar);
+		mTitleBarView    = mBaseView.findViewById(R.id.title_bar);
 		mMessageListView = mBaseView.findViewById(R.id.message_list_listview);
 	}
 
@@ -63,12 +63,12 @@ public class MessageFragment extends Fragment implements RemoveListener {
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
-				case 1:
-					adapter.notifyDataSetChanged();
-					mMessageListView.setSelection(mMessageEntityList.size());
-					break;
-				default:
-					break;
+					case 1:
+						adapter.notifyDataSetChanged();
+						mMessageListView.setSelection(mMessageEntityList.size());
+						break;
+					default:
+						break;
 				}
 			}
 		};
