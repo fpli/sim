@@ -17,7 +17,6 @@ import com.sdust.im.bean.User;
 import com.sdust.im.util.VerifyUtils;
 import com.sdust.im.view.TitleBarView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class SearchFriendActivity extends BaseActivity implements OnClickListener {

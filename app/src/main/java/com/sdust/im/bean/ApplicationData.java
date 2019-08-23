@@ -165,8 +165,7 @@ public class ApplicationData {
 		boolean hasMessageTab = false;
 		for (int i = 0; i < mMessageEntities.size(); i++) {
 			MessageTabEntity messageTab = mMessageEntities.get(i);
-			if (messageTab.getSenderId() == senderId
-					&& messageTab.getMessageType() == MessageTabEntity.FRIEND_MESSAGE) {
+			if (messageTab.getSenderId() == senderId && messageTab.getMessageType() == MessageTabEntity.FRIEND_MESSAGE) {
 				messageTab.setUnReadCount(messageTab.getUnReadCount() + 1);
 				messageTab.setContent(chat.getContent());
 				messageTab.setSendTime(chat.getSendTime());
