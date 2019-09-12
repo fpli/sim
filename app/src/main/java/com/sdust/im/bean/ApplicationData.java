@@ -183,12 +183,6 @@ public class ApplicationData {
 			messageTab.setUnReadCount(1);
 			mMessageEntities.add(messageTab);
 			ImDB.getInstance(mContext).saveMessage(messageTab);
-			//
-			if (messageHandler != null) {
-				Message message = new Message();
-				message.what = 1;
-				messageHandler.sendMessage(message);
-			}
 		}
 		chat.setMessageType(ChatEntity.RECEIVE);
 		List<ChatEntity> chatList = mChatMessagesMap.get(chat.getSenderId());
@@ -198,6 +192,11 @@ public class ApplicationData {
 		}
 		chatList.add(chat);
 		ImDB.getInstance(mContext).saveChatMessage(chat);
+		if (messageHandler != null) {
+			Message message = new Message();
+			message.what = 1;
+			messageHandler.sendMessage(message);
+		}
 		if (chatMessageHandler != null) {
 			Message message = new Message();
 			message.what = 1;
