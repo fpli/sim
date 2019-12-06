@@ -65,7 +65,7 @@ public class CropImage {
 								mCrop.setFocus(true);
 							}
 						} catch (Exception e) {
-							// TODO: handle exception
+
 						}
 						latch.countDown();
 					}
@@ -144,8 +144,8 @@ public class CropImage {
 	}
 
 	private Bitmap onSaveClicked(Bitmap bm) {
-		// CR: TODO!
-		// TODO this code needs to change to use the decode/crop/encode single
+		// CR:
+		// this code needs to change to use the decode/crop/encode single
 		// step api so that we don't require that the whole (possibly large)
 		// bitmap doesn't have to be read into memory
 		if (mSaving)
@@ -365,7 +365,7 @@ public class CropImage {
 						// mProgress.show();
 						// }
 					} catch (Exception e) {
-						// TODO: handle exception
+						//  handle exception
 					}
 
 					latch.countDown();
